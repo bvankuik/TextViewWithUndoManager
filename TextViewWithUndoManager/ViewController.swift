@@ -18,13 +18,11 @@ class ViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func redo(_ sender: UIBarButtonItem) {
-        print("redo")
         self.textView.undoManager?.redo()
         self.refreshView()
     }
     
     @IBAction func undo(_ sender: UIBarButtonItem) {
-        print("undo")
         self.textView.undoManager?.undo()
         self.refreshView()
     }
@@ -39,9 +37,6 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         self.refreshView()
-    }
-    
-    override func viewDidLoad() {
     }
     
     override func viewDidAppear(_ animated: Bool) {
