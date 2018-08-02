@@ -9,29 +9,43 @@
 import UIKit
 
 class ViewController: UIViewController, UITextViewDelegate {
-    
     @IBOutlet weak var textView: UITextView!
-
+    @IBOutlet weak var undoButton: UIBarButtonItem!
+    @IBOutlet weak var redoButton: UIBarButtonItem!
+    
     @IBAction func hideKeyboard(_ sender: UIBarButtonItem) {
         self.textView.resignFirstResponder()
     }
     
     @IBAction func redo(_ sender: UIBarButtonItem) {
         print("redo")
+        self.textView.undoManager?.redo()
+        self.refreshView()
     }
     
     @IBAction func undo(_ sender: UIBarButtonItem) {
         print("undo")
+        self.textView.undoManager?.undo()
+        self.refreshView()
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        print("didBegin")
+    private func refreshView() {
+        guard let undoManager = self.textView.undoManager else {
+            return
+        }
+        self.undoButton.isEnabled = undoManager.canUndo
+        self.redoButton.isEnabled = undoManager.canRedo
     }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
-        print("didEnd")
+    func textViewDidChange(_ textView: UITextView) {
+        self.refreshView()
     }
     
     override func viewDidLoad() {
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.refreshView()
     }
 }

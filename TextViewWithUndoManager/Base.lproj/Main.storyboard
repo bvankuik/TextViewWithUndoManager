@@ -63,7 +63,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="redoButton" destination="mYj-ug-M34" id="Jrn-hS-n11"/>
                         <outlet property="textView" destination="Cyj-a0-Rcv" id="Jzh-1n-egO"/>
+                        <outlet property="undoButton" destination="zPl-TS-Tou" id="RzU-Mr-pDD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
