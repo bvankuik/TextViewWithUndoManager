@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,62 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TextViewWithUndoManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Cyj-a0-Rcv">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="6SF-V5-G0I"/>
+                                </connections>
+                            </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E2b-KL-gkV">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Undo" id="zPl-TS-Tou">
+                                        <connections>
+                                            <action selector="undo:" destination="BYZ-38-t0r" id="iPT-tE-4KR"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Redo" id="mYj-ug-M34">
+                                        <connections>
+                                            <action selector="redo:" destination="BYZ-38-t0r" id="eBy-QO-xNJ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6Rz-ni-urU"/>
+                                    <barButtonItem title="Hide keyboard" id="WTJ-PT-Lio">
+                                        <connections>
+                                            <action selector="hideKeyboard:" destination="BYZ-38-t0r" id="oiN-kU-5YK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="E2b-KL-gkV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3eJ-6g-KlI"/>
+                            <constraint firstItem="Cyj-a0-Rcv" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4yO-Dr-jha"/>
+                            <constraint firstItem="Cyj-a0-Rcv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Fx0-rS-E5n"/>
+                            <constraint firstItem="E2b-KL-gkV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QqX-CD-c2o"/>
+                            <constraint firstItem="Cyj-a0-Rcv" firstAttribute="top" secondItem="E2b-KL-gkV" secondAttribute="bottom" id="mog-gR-V7q"/>
+                            <constraint firstItem="Cyj-a0-Rcv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nJY-1b-Zca"/>
+                            <constraint firstItem="E2b-KL-gkV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nfM-r5-3zH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="textView" destination="Cyj-a0-Rcv" id="Jzh-1n-egO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

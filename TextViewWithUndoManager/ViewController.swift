@@ -8,18 +8,30 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextViewDelegate {
+    
+    @IBOutlet weak var textView: UITextView!
 
+    @IBAction func hideKeyboard(_ sender: UIBarButtonItem) {
+        self.textView.resignFirstResponder()
+    }
+    
+    @IBAction func redo(_ sender: UIBarButtonItem) {
+        print("redo")
+    }
+    
+    @IBAction func undo(_ sender: UIBarButtonItem) {
+        print("undo")
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print("didBegin")
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        print("didEnd")
+    }
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
-
